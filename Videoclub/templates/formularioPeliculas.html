@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class= 'container col-12 mb-5'>
+    <form action="/ConfirmacionAlta/" class="form-control" method="POST"> {% csrf_token %}
+        <p>Nombre: <input type="text" name = 'Nombre' class="form-control"> </p>
+        <p>Categoria: <input type="text" name = 'Categoria' class="form-control"> </p>
+        <p>Descripcion: <input type="text" name = 'Descripcion' class="form-control"> </p>
+        <!-- <p>Estado: <input type="text" name = 'Estado' class="form-control"> </p> -->
+        <p>Precio: <input type="number" name = 'Precio' class="form-control"> </p>
+
+        <input type="submit" name='Crear'>
+
+    </form>
+
+
+</div>
+</body>
+</html>
