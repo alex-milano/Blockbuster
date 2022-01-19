@@ -2,6 +2,14 @@
 {% block title %} Alta Pelicula {% endblock %}
 
 {% block content %}
+<div class="container-fluid"> 
+    <div class="row">
+            <div class="col-sm-12 d-flex justify-content-center">
+                <h1 class="text-center">Formulario alta de peliculas </h1>.
+        </div>
+    </div>
+
+</div>
     <div class= 'container col-12 mb-5'>
     <form action="/Videoclub/confirmacionAlta/" class="form-control" method="POST"> {% csrf_token %}
         <p>Nombre: <input type="text" name = 'Nombre' class="form-control"> </p>
