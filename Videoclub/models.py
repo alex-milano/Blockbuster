@@ -24,9 +24,9 @@ class Socio(models.Model):
 
 
 class Empleado(models.Model):
-    nombre: models.CharField(max_length= 50)
-    dni = models.IntegerField()
-    telefono = models.IntegerField()
+    nombre= models.CharField(max_length= 100)
+    dni = models.CharField(max_length= 100)
+    telefono = models.CharField(max_length= 100)
     email = models.EmailField()
     
     def __str__(self):

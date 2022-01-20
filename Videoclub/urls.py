@@ -18,6 +18,25 @@ urlpatterns = [
     path('eliminarSocio/<int:id>', views.eliminar_socio),
     path('formularioModificacionSocio/<int:id>', views.formulario_modificacion_socio),
     path('modificarSocio/', views.modificar_socio),
+
+
+    
+    path('listadoEmpleados/', views.listado_empleados),
+    path('formularioEmpleado/', views.formulario_empleado),
+    path('confirmacionAltaEmpleado/', views.confirmacion_alta_empleado),
+    path('formularioModificacionEmpleado/<int:id>', views.formulario_modificacion_empleado),
+    path('modificarEmpleado/', views.modificar_empleado),
+    path('eliminarEmpleado/<int:id>', views.eliminar_empleado),
+
+    
+
+    
+
+    
+
+    
+
+    
     
 
 

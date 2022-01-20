@@ -2,7 +2,7 @@ import email
 from operator import index
 from pickle import GET
 from django.shortcuts import render, redirect
-from Videoclub.models import Pelicula, Socio
+from Videoclub.models import Empleado, Pelicula, Socio
 
 
 def index(request):
@@ -100,6 +100,53 @@ def modificar_socio(request):
 
     return render(request, 'listadoSocios.html', {'socios':socios})
     
+
+def listado_empleados(request):
+    empleados = Empleado.objects.all()
+    return render(request,'listadoEmpleados.html',{'empleados':empleados})
+
+def formulario_empleado(request):
+    return render(request,'formularioEmpleado.html')
+
+def confirmacion_alta_empleado(request):
+    empleado = Empleado(nombre = request.POST.get('Nombre'),
+    dni = request.POST.get('Dni'),
+    telefono = request.POST.get('Telefono'),
+    email = request.POST.get('Email')
+    )
+    empleado.save()
+    return render(request,'confirmacionAltaEmpleado.html', {'empleado':empleado})
+
+def formulario_modificacion_empleado(request, id):
+    empleado = Empleado.objects.get(id = id)
+    return render(request, 'formularioModificacionEmpleado.html', {'empleado':empleado})
+
+def modificar_empleado(request):
+    id = request.POST.get('Id')
+    nombre = request.POST.get('Nombre')
+    dni = request.POST.get('Dni')
+    telefono = request.POST.get('Telefono')
+    email = request.POST.get('Email')
+
+    empleado = Empleado.objects.get(id = id)
+    empleado.nombre = nombre
+    empleado.dni = dni
+    empleado.telefono = telefono
+    empleado.email = email
+    empleado.save()
+    empleados = Empleado.objects.all()
+
+    return render(request, 'listadoEmpleados.html', {'empleados':empleados})
+
+def eliminar_empleado(request, id):
+    empleado = Empleado.objects.get(id=id)
+    empleado.delete()
+    empleados = Empleado.objects.all()
+    return render(request,'listadoEmpleados.html', {'empleados':empleados})
+
+    
+
+
 
 
 
