@@ -14,9 +14,9 @@ class Pelicula(models.Model):
 
 
 class Socio(models.Model):
-    nombre: models.CharField(max_length= 50)
-    nro_socio = models.IntegerField(max_length= 6)
-    telefono = models.IntegerField(max_length= 10)
+    nombre = models.CharField(max_length= 50)
+    nro_socio = models.CharField(max_length= 6)
+    telefono = models.CharField(max_length= 10)
     email = models.EmailField()
 
     def __str__(self):
