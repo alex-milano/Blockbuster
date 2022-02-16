@@ -2,11 +2,23 @@ import email
 from operator import index
 from pickle import GET
 from django.shortcuts import render, redirect
+from Videoclub.models import Avatar
 from Videoclub.models import Empleado, Pelicula, Socio
+
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import login, logout, authenticate
 
 
 def index(request):
     return render(request, 'index.html')
+
+def about(request):
+    return render(request, 'about.html')
+
+def inicio(request):
+
+    avatar = Avatar.objects.filter(user=request.user.id)
+    return render(request, "index.html", {'url': avatar[0].imagen.url})
 
 
 def formulario_peliculas(request):
@@ -144,7 +156,57 @@ def eliminar_empleado(request, id):
     empleados = Empleado.objects.all()
     return render(request,'listadoEmpleados.html', {'empleados':empleados})
 
-    
+
+def login_request(request):
+
+    if (request.method == 'POST'):
+
+        form = AuthenticationForm(request, data = request.POST)
+
+        if form.is_valid():
+
+            data = form.cleaned_data
+
+            user = authenticate(username=data['username'], password=data['password'])
+
+            if user is not None: 
+            
+                login(request, user)
+                return render(request,'index.html', {"mensaje": f"Bienvenido {user.get_username()}"})
+                
+            else:
+                return render(request,'index.html', {"mensaje": f"Falló la autenticación"})
+        else: 
+                return render(request,'index.html', {"mensaje": f"Error, formulario erroneo"}) 
+           
+    form = AuthenticationForm()
+
+    return render(request,"login.html",{'form':form})
+
+def register(request):
+
+    if(request.method == 'POST'): 
+
+        form = UserCreationForm(request.POST)
+
+        if(form.is_valid()):
+
+            username = form.cleaned_data['username']
+            form.save()
+
+            return render(request,"index.html", {'mensaje': 'Usuario creado con exito'})
+        
+        else: 
+
+            return render(request,"index.html", {'mensaje': 'Usurio no creado, intente nuevamente'})
+
+    else: 
+
+        form = UserCreationForm()
+
+        return render(request, 'registro.html', {'form':form })
+            
+
 
 
 
