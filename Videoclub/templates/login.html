@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <title>Login</title>
+</head>
+<body class="text-center">
+    <div class="container">
+      <img class="mb-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Blockbuster_logo.svg/594px-Blockbuster_logo.svg.png" alt="" width="300" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">Por favor inicia sesión</h1>
+        <div class="row">
+            <div class="span12">
+                <form class="form-horizontal" action='' method="POST">
+                  <fieldset>
+                    <div id="legend">
+                      <legend class=""><p><span id="datetime"></span></p><script>var dt = new Date();
+                        document.getElementById("datetime").innerHTML=dt.toLocaleString();</script>  </legend>
+                    </div>
+                    {% csrf_token %}
+        
+                    {{form.as_p}}
+                      <div class="controls col text-center">
+                        <button type="submit" class="btn btn-success">Login</button>
+                        </div>
+                    </div>
+                  </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>  
+</body>
+</html>
